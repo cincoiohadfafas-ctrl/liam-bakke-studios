@@ -10,6 +10,17 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          "vendor-react":   ["react", "react-dom"],
+          "vendor-router":  ["@tanstack/react-router"],
+          "vendor-motion":  ["framer-motion"],
+        },
+      },
+    },
+  },
   server: {
     proxy: {
       "/api": {
