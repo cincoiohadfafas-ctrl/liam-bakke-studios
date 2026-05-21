@@ -15,7 +15,7 @@ import { useState } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EMAIL, INSTAGRAM_URL, PHONE, SPOTIFY_URL } from "@/lib/utils";
-import studio from "@/assets/studio2.jpg";
+import studio from "@/assets/studio2.webp";
 import { LeafDecor } from "@/components/LeafDecor";
 
 /* ─── Head / SEO ─────────────────────────────────────────────────── */
