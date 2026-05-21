@@ -312,6 +312,95 @@ function Vine({
   );
 }
 
+function ClimbingMonkey({ progress }: { progress: MotionValue<number> }) {
+  // Climb from bottom (90vh) to top (5vh) as page scrolls
+  const bottom = useTransform(progress, [0, 1], ["5vh", "90vh"]);
+  // Alternate arm raise based on scroll for climbing animation
+  const armAngle = useTransform(progress, [0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6, 0.65, 0.7, 0.75, 0.8, 0.85, 0.9, 0.95, 1],
+    [0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0, 1, 0]);
+
+  return (
+    <motion.div
+      aria-hidden
+      style={{
+        position: "fixed",
+        right: "18px",
+        bottom,
+        zIndex: 1,
+        pointerEvents: "none",
+      }}
+    >
+      <MonkeySvg armPhase={armAngle} />
+    </motion.div>
+  );
+}
+
+function MonkeySvg({ armPhase }: { armPhase: MotionValue<number> }) {
+  const leftArmRot  = useTransform(armPhase, [0, 1], [-35, 35]);
+  const rightArmRot = useTransform(armPhase, [0, 1], [35, -35]);
+
+  const brown      = "#7B4A1E";
+  const lightBrown = "#C8865A";
+  const darkBrown  = "#5A3010";
+  const peach      = "#F0B880";
+
+  return (
+    <svg width="52" height="80" viewBox="0 0 52 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* Tail curling to the right toward the vine */}
+      <path d="M28 72 Q48 68 46 52 Q44 40 38 44" stroke={darkBrown} strokeWidth="4" strokeLinecap="round" fill="none" />
+
+      {/* Body */}
+      <ellipse cx="26" cy="54" rx="11" ry="14" fill={brown} />
+      {/* Belly */}
+      <ellipse cx="26" cy="56" rx="6" ry="8" fill={lightBrown} />
+
+      {/* Left arm (grabs vine — higher when phase=0) */}
+      <motion.g style={{ originX: "17px", originY: "46px", rotate: leftArmRot }}>
+        <line x1="17" y1="46" x2="4" y2="30" stroke={brown} strokeWidth="5" strokeLinecap="round" />
+        {/* hand */}
+        <circle cx="4" cy="28" r="4" fill={darkBrown} />
+      </motion.g>
+
+      {/* Right arm (grabs vine — alternates) */}
+      <motion.g style={{ originX: "35px", originY: "46px", rotate: rightArmRot }}>
+        <line x1="35" y1="46" x2="48" y2="30" stroke={brown} strokeWidth="5" strokeLinecap="round" />
+        <circle cx="48" cy="28" r="4" fill={darkBrown} />
+      </motion.g>
+
+      {/* Left leg */}
+      <line x1="20" y1="66" x2="14" y2="78" stroke={brown} strokeWidth="4.5" strokeLinecap="round" />
+      <circle cx="13" cy="79" r="3.5" fill={darkBrown} />
+      {/* Right leg */}
+      <line x1="32" y1="66" x2="38" y2="78" stroke={brown} strokeWidth="4.5" strokeLinecap="round" />
+      <circle cx="39" cy="79" r="3.5" fill={darkBrown} />
+
+      {/* Head */}
+      <circle cx="26" cy="34" r="13" fill={brown} />
+      {/* Left ear */}
+      <circle cx="13" cy="34" r="5.5" fill={brown} />
+      <circle cx="13" cy="34" r="3" fill={peach} />
+      {/* Right ear */}
+      <circle cx="39" cy="34" r="5.5" fill={brown} />
+      <circle cx="39" cy="34" r="3" fill={peach} />
+      {/* Face */}
+      <ellipse cx="26" cy="38" rx="8" ry="6" fill={peach} />
+      {/* Eyes */}
+      <circle cx="22" cy="31" r="2.5" fill="white" />
+      <circle cx="30" cy="31" r="2.5" fill="white" />
+      <circle cx="22.8" cy="31.5" r="1.4" fill="#1a0a00" />
+      <circle cx="30.8" cy="31.5" r="1.4" fill="#1a0a00" />
+      {/* Eye shine */}
+      <circle cx="23.3" cy="31" r="0.5" fill="white" />
+      <circle cx="31.3" cy="31" r="0.5" fill="white" />
+      {/* Nostrils */}
+      <circle cx="23.5" cy="37" r="1.2" fill={darkBrown} />
+      <circle cx="28.5" cy="37" r="1.2" fill={darkBrown} />
+      {/* Mouth smile */}
+      <path d="M21 40 Q26 44 31 40" stroke={darkBrown} strokeWidth="1.5" strokeLinecap="round" fill="none" />
+    </svg>
+  );
+}
+
 export function LeafDecor() {
   const { scrollYProgress } = useScroll();
 
@@ -326,6 +415,7 @@ export function LeafDecor() {
       <Vine progress={scrollYProgress} triggerStart={0.08} triggerEnd={0.75} right="85px"  opacity={0.62} flip={true}  width={115} />
       <Vine progress={scrollYProgress} triggerStart={0.15} triggerEnd={0.82} left="190px"  opacity={0.38} flip={false} width={95}  zIndex={0} />
       <Vine progress={scrollYProgress} triggerStart={0.18} triggerEnd={0.85} right="180px" opacity={0.35} flip={true}  width={90}  zIndex={0} />
+      <ClimbingMonkey progress={scrollYProgress} />
     </>
   );
 }
