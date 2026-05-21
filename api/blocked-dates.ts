@@ -18,15 +18,17 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   if (req.method === "POST") {
-    const { password, dates } = req.body as { password: string; dates: string[] };
+    const { password, dates } = req.body as { password: string; dates?: string[] };
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Feil passord" });
     }
-    await put("blocked-dates.json", JSON.stringify({ dates }), {
-      access: "public",
-      contentType: "application/json",
-      addRandomSuffix: false,
-    });
+    if (dates !== undefined) {
+      await put("blocked-dates.json", JSON.stringify({ dates }), {
+        access: "public",
+        contentType: "application/json",
+        addRandomSuffix: false,
+      });
+    }
     return res.json({ ok: true });
   }
 
