@@ -42,7 +42,6 @@ export function IndexPage() {
           <ContactStrip />
         </main>
         <SiteFooter />
-        <Killswitch />
       </div>
     </>
   );
@@ -852,56 +851,5 @@ function ContactStrip() {
         </div>
       </div>
     </section>
-  );
-}
-
-function playOof() {
-  const ctx = new AudioContext();
-  const osc = ctx.createOscillator();
-  const gain = ctx.createGain();
-  osc.connect(gain);
-  gain.connect(ctx.destination);
-  osc.type = "sine";
-  osc.frequency.setValueAtTime(400, ctx.currentTime);
-  osc.frequency.exponentialRampToValueAtTime(160, ctx.currentTime + 0.18);
-  gain.gain.setValueAtTime(0.7, ctx.currentTime);
-  gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.28);
-  osc.start(ctx.currentTime);
-  osc.stop(ctx.currentTime + 0.3);
-  osc.onended = () => ctx.close();
-}
-
-function Killswitch() {
-  const [hit, setHit] = useState(false);
-  function handleClick() {
-    playOof();
-    setHit(true);
-    setTimeout(() => setHit(false), 150);
-  }
-  return (
-    <button
-      onClick={handleClick}
-      style={{
-        position: "fixed",
-        bottom: "24px",
-        right: "24px",
-        zIndex: 9999,
-        background: hit ? "#ff0000" : "#cc0000",
-        color: "#fff",
-        fontWeight: 900,
-        fontSize: "1rem",
-        letterSpacing: "0.15em",
-        border: "3px solid #ff0000",
-        borderRadius: "6px",
-        padding: "10px 18px",
-        cursor: "pointer",
-        boxShadow: hit ? "0 0 24px #ff0000" : "0 0 8px #cc0000",
-        transform: hit ? "scale(0.93)" : "scale(1)",
-        transition: "transform 0.08s, box-shadow 0.08s, background 0.08s",
-        userSelect: "none",
-      }}
-    >
-      KILLSWITCH
-    </button>
   );
 }
