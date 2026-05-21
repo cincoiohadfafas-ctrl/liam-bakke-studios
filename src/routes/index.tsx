@@ -352,7 +352,7 @@ function SpotifyPortfolio() {
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      className="grid grid-cols-2 gap-3"
+      className="grid grid-cols-1 sm:grid-cols-2 gap-3"
     >
       {SPOTIFY_IDS.map((id) => (
         <iframe
