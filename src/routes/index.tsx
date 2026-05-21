@@ -672,7 +672,9 @@ function downloadIcs(name: string, service: string, date: string, message: strin
   const url  = URL.createObjectURL(blob);
   const a    = document.createElement("a");
   a.href     = url;
-  a.download = "liam-bakke-studios-booking.ics";
+  // On iOS Safari, omitting download attribute opens the .ics directly in Calendar
+  const isIos = /iphone|ipad|ipod/i.test(navigator.userAgent);
+  if (!isIos) a.download = "liam-bakke-studios-booking.ics";
   a.click();
   URL.revokeObjectURL(url);
 }
