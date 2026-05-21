@@ -346,14 +346,6 @@ const SPOTIFY_IDS = [
   "1ENgD2Ug9odXNKl5SfGA44",
 ];
 
-// Seeded fixed stream counts — stable across refreshes
-const STREAM_COUNTS = SPOTIFY_IDS.map((id) => {
-  let h = 0;
-  for (let i = 0; i < id.length; i++) h = (Math.imul(31, h) + id.charCodeAt(i)) | 0;
-  const base = Math.abs(h) % 900000;
-  return (120000 + base).toLocaleString("no-NO");
-});
-
 function SpotifyPortfolio() {
   return (
     <motion.div
@@ -362,30 +354,16 @@ function SpotifyPortfolio() {
       viewport={{ once: true }}
       className="grid grid-cols-2 gap-3"
     >
-      {SPOTIFY_IDS.map((id, i) => (
-        <div key={id}>
-          {/* Play count badge sits above the iframe */}
-          <div style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-            marginBottom: "6px",
-            paddingLeft: "4px",
-          }}>
-            <Play style={{ width: 11, height: 11, color: "oklch(0.68 0.16 168)", fill: "oklch(0.68 0.16 168)" }} />
-            <span style={{ fontSize: "11px", fontWeight: 600, color: "oklch(0.65 0.04 265)", letterSpacing: "0.03em" }}>
-              {STREAM_COUNTS[i]}
-            </span>
-          </div>
-          <iframe
-            src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
-            width="100%"
-            height="180"
-            allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
-            loading="lazy"
-            style={{ borderRadius: "12px", border: "none", display: "block" }}
-          />
-        </div>
+      {SPOTIFY_IDS.map((id) => (
+        <iframe
+          key={id}
+          src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
+          width="100%"
+          height="180"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          style={{ borderRadius: "12px", border: "none", display: "block" }}
+        />
       ))}
     </motion.div>
   );
