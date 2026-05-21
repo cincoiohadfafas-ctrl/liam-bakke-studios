@@ -413,7 +413,7 @@ const ADDONS = [
 
 function Pricing() {
   return (
-    <section id="priser" className="relative py-28 px-5">
+    <section id="priser" className="relative pt-10 pb-28 px-5">
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
