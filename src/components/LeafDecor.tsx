@@ -6,11 +6,11 @@ function IvyLeaf({ s, variant = 0, op }: { s: number; variant?: number; op: numb
   const id = `ivy-${s}-${variant}`;
   // Color variants: dark green, mid green, slightly yellowed, blue-green
   const fills = [
-    ["oklch(0.52 0.18 148)", "oklch(0.34 0.14 142)"],
-    ["oklch(0.48 0.16 144)", "oklch(0.30 0.12 138)"],
-    ["oklch(0.55 0.14 155)", "oklch(0.36 0.11 150)"],
-    ["oklch(0.50 0.12 140)", "oklch(0.32 0.14 135)"],
-    ["oklch(0.46 0.20 145)", "oklch(0.28 0.16 140)"],
+    ["oklch(0.36 0.18 148)", "oklch(0.22 0.14 142)"],
+    ["oklch(0.32 0.16 144)", "oklch(0.18 0.12 138)"],
+    ["oklch(0.38 0.14 155)", "oklch(0.24 0.11 150)"],
+    ["oklch(0.34 0.12 140)", "oklch(0.20 0.14 135)"],
+    ["oklch(0.30 0.20 145)", "oklch(0.16 0.16 140)"],
   ];
   const [light, dark] = fills[variant % fills.length];
   const v = "oklch(0.26 0.09 140)"; // vein color
