@@ -374,7 +374,7 @@ function SpotifyPortfolio() {
           key={id}
           src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
           width="100%"
-          height="99"
+          height="109"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
           style={{ borderRadius: "12px", border: "none", display: "block" }}
