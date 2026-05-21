@@ -1,5 +1,4 @@
 import { motion, useScroll, useTransform, useMotionTemplate, MotionValue } from "framer-motion";
-import { RainDrizzle } from "./RainDrizzle";
 
 // True 5-lobed ivy leaf with layered shading, drop shadow and full vein network
 function IvyLeaf({ s, variant = 0, op }: { s: number; variant?: number; op: number }) {
@@ -319,13 +318,16 @@ export function LeafDecor() {
     <>
       {/* Explicit background sits below vines */}
       <div aria-hidden style={{ position: "fixed", inset: 0, background: "oklch(0.14 0.04 280)", zIndex: -2 }} />
-      <RainDrizzle />
+      {/* Edge vines — visible on all screens */}
       <Vine progress={scrollYProgress} triggerStart={0}    triggerEnd={0.65} left="-12px"  opacity={0.92} flip={false} width={150} />
       <Vine progress={scrollYProgress} triggerStart={0.02} triggerEnd={0.67} right="-12px" opacity={0.90} flip={true}  width={145} />
-      <Vine progress={scrollYProgress} triggerStart={0.05} triggerEnd={0.72} left="90px"   opacity={0.65} flip={false} width={120} />
-      <Vine progress={scrollYProgress} triggerStart={0.08} triggerEnd={0.75} right="85px"  opacity={0.62} flip={true}  width={115} />
-      <Vine progress={scrollYProgress} triggerStart={0.15} triggerEnd={0.82} left="190px"  opacity={0.38} flip={false} width={95}  zIndex={0} />
-      <Vine progress={scrollYProgress} triggerStart={0.18} triggerEnd={0.85} right="180px" opacity={0.35} flip={true}  width={90}  zIndex={0} />
+      {/* Inner vines — desktop only */}
+      <div className="hidden md:contents">
+        <Vine progress={scrollYProgress} triggerStart={0.05} triggerEnd={0.72} left="90px"   opacity={0.65} flip={false} width={120} />
+        <Vine progress={scrollYProgress} triggerStart={0.08} triggerEnd={0.75} right="85px"  opacity={0.62} flip={true}  width={115} />
+        <Vine progress={scrollYProgress} triggerStart={0.15} triggerEnd={0.82} left="190px"  opacity={0.38} flip={false} width={95}  zIndex={0} />
+        <Vine progress={scrollYProgress} triggerStart={0.18} triggerEnd={0.85} right="180px" opacity={0.35} flip={true}  width={90}  zIndex={0} />
+      </div>
     </>
   );
 }
