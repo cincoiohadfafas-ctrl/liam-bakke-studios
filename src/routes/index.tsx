@@ -11,7 +11,7 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EMAIL, INSTAGRAM_URL, PHONE, SPOTIFY_URL } from "@/lib/utils";
@@ -680,10 +680,20 @@ function downloadIcs(name: string, service: string, date: string, message: strin
 }
 
 function Booking() {
-  const [sent, setSent] = useState(false);
+  const [sent, setSent]               = useState(false);
+  const [blockedDates, setBlockedDates] = useState<string[]>([]);
+  const [dateBlocked, setDateBlocked]   = useState(false);
+
+  useEffect(() => {
+    fetch("/api/blocked-dates")
+      .then(r => r.json())
+      .then(d => setBlockedDates(d.dates ?? []))
+      .catch(() => {});
+  }, []);
 
   function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    if (dateBlocked) return;
     const fd = new FormData(e.currentTarget);
     const name    = fd.get("name") as string;
     const service = fd.get("service") as string;
@@ -798,7 +808,29 @@ function Booking() {
                     ))}
                   </select>
                 </div>
-                <FormField label="Ønsket dato (valgfritt)" name="date" type="date" />
+                <div>
+                  <label className="block text-xs mb-1.5" style={{ color: "oklch(0.65 0.04 265)" }}>
+                    Ønsket dato (valgfritt)
+                  </label>
+                  <input
+                    name="date"
+                    type="date"
+                    min={new Date().toISOString().split("T")[0]}
+                    onChange={e => setDateBlocked(blockedDates.includes(e.target.value))}
+                    className="w-full rounded-xl px-4 py-3 text-sm outline-none transition-all"
+                    style={{
+                      background: "oklch(0.16 0.04 280)",
+                      border: `1px solid ${dateBlocked ? "oklch(0.65 0.18 25 / 0.8)" : "oklch(0.32 0.06 280 / 0.6)"}`,
+                      color: "oklch(0.90 0.02 265)",
+                      colorScheme: "dark",
+                    }}
+                  />
+                  {dateBlocked && (
+                    <p className="text-xs mt-1.5" style={{ color: "oklch(0.70 0.18 25)" }}>
+                      Denne datoen er dessverre opptatt — velg en annen dato.
+                    </p>
+                  )}
+                </div>
               </div>
               <div>
                 <label className="block text-xs mb-1.5" style={{ color: "oklch(0.65 0.04 265)" }}>Om prosjektet</label>
