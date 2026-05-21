@@ -1,9 +1,9 @@
-import { Link } from "@tanstack/react-router";
+import { Link, useNavigate } from "@tanstack/react-router";
 import { Instagram, Music2, Mail, Phone } from "lucide-react";
 import { EMAIL, PHONE, INSTAGRAM_URL, SPOTIFY_URL } from "@/lib/utils";
 import logoFull from "@/assets/logo-full.png";
-import { useState } from "react";
-import { AnimatePresence } from "framer-motion";
+import { useState, useEffect, useRef } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { DinoGame } from "./DinoGame";
 
 const LINKS = [
@@ -15,9 +15,105 @@ const LINKS = [
   { label: "Booking", to: "/", hash: "booking" },
 ] as const;
 
+function AdminPortal() {
+  const [password, setPassword] = useState("");
+  const [error, setError]       = useState("");
+  const [loading, setLoading]   = useState(false);
+  const navigate = useNavigate();
+
+  async function handleSubmit(e: React.FormEvent) {
+    e.preventDefault();
+    setLoading(true);
+    setError("");
+    const r = await fetch("/api/blocked-dates", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ password, dates: [] }),
+    });
+    setLoading(false);
+    if (r.ok) {
+      navigate({ to: "/admin" });
+    } else {
+      setError("Feil passord");
+      setPassword("");
+    }
+  }
+
+  return (
+    <motion.div
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      style={{
+        position: "fixed", inset: 0, zIndex: 9999,
+        background: "oklch(0.10 0.04 280 / 0.85)",
+        backdropFilter: "blur(12px)",
+        display: "flex", alignItems: "center", justifyContent: "center",
+      }}
+      onClick={e => e.target === e.currentTarget && navigate({ to: "/" })}
+    >
+      <motion.div
+        initial={{ scale: 0.95, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        exit={{ scale: 0.95, opacity: 0 }}
+        className="rounded-2xl border p-8 w-full max-w-xs"
+        style={{
+          background: "oklch(0.18 0.05 280)",
+          borderColor: "oklch(0.32 0.06 280 / 0.5)",
+        }}
+      >
+        <p className="text-xs uppercase tracking-widest font-semibold mb-5"
+          style={{ color: "oklch(0.68 0.16 168)" }}>Admin</p>
+        <form onSubmit={handleSubmit} className="space-y-3">
+          <input
+            type="password"
+            placeholder="Passord"
+            value={password}
+            onChange={e => setPassword(e.target.value)}
+            autoFocus
+            className="w-full rounded-xl px-4 py-3 text-sm outline-none"
+            style={{
+              background: "oklch(0.14 0.04 280)",
+              border: "1px solid oklch(0.32 0.06 280 / 0.6)",
+              color: "oklch(0.90 0.02 265)",
+            }}
+          />
+          {error && <p className="text-xs" style={{ color: "oklch(0.65 0.18 25)" }}>{error}</p>}
+          <button
+            type="submit"
+            disabled={loading || !password}
+            className="w-full rounded-full py-3 text-sm font-medium transition-opacity hover:opacity-90 disabled:opacity-50"
+            style={{
+              background: "linear-gradient(135deg, oklch(0.62 0.18 280), oklch(0.52 0.16 168))",
+              color: "oklch(0.97 0.01 240)",
+            }}
+          >
+            {loading ? "Sjekker…" : "Logg inn"}
+          </button>
+        </form>
+      </motion.div>
+    </motion.div>
+  );
+}
+
 export function SiteFooter() {
-  const [clicks, setClicks] = useState(0);
+  const [clicks, setClicks]     = useState(0);
   const [showDino, setShowDino] = useState(false);
+  const [showAdmin, setShowAdmin] = useState(false);
+  const keyBuffer = useRef("");
+
+  // Listen for "liam" typed anywhere on the page
+  useEffect(() => {
+    function onKey(e: KeyboardEvent) {
+      keyBuffer.current = (keyBuffer.current + e.key).slice(-4);
+      if (keyBuffer.current.toLowerCase() === "liam") {
+        setShowAdmin(true);
+        keyBuffer.current = "";
+      }
+    }
+    window.addEventListener("keydown", onKey);
+    return () => window.removeEventListener("keydown", onKey);
+  }, []);
 
   function handleSecretClick() {
     const next = clicks + 1;
@@ -29,6 +125,7 @@ export function SiteFooter() {
     <>
     <AnimatePresence>
       {showDino && <DinoGame onClose={() => setShowDino(false)} />}
+      {showAdmin && <AdminPortal />}
     </AnimatePresence>
     <footer
       className="relative border-t"
