@@ -633,6 +633,50 @@ function Reviews() {
 }
 
 /* ─── Booking ────────────────────────────────────────────────────── */
+function toIcsDate(dateStr: string) {
+  const d = new Date(dateStr);
+  return d.toISOString().replace(/[-:]/g, "").split(".")[0] + "Z";
+}
+
+function downloadIcs(name: string, service: string, date: string, message: string) {
+  const start = toIcsDate(date);
+  // Default 2-hour session; end = start + 2h
+  const end = toIcsDate(new Date(new Date(date).getTime() + 2 * 60 * 60 * 1000).toISOString());
+  const uid = `${Date.now()}@liambakkestudios.no`;
+  const now = toIcsDate(new Date().toISOString());
+
+  const ics = [
+    "BEGIN:VCALENDAR",
+    "VERSION:2.0",
+    "PRODID:-//Liam Bakke Studios//Booking//NO",
+    "CALSCALE:GREGORIAN",
+    "METHOD:PUBLISH",
+    "BEGIN:VEVENT",
+    `UID:${uid}`,
+    `DTSTAMP:${now}`,
+    `DTSTART:${start}`,
+    `DTEND:${end}`,
+    `SUMMARY:Studio Session – ${service} @ Liam Bakke Studios`,
+    `DESCRIPTION:Hei ${name}!\\nGleder oss til å se deg.\\n\\n${message || ""}`,
+    "LOCATION:Liam Bakke Studios",
+    "BEGIN:VALARM",
+    "TRIGGER:-P1D",
+    "ACTION:DISPLAY",
+    "DESCRIPTION:Påminnelse: Studio session i morgen!",
+    "END:VALARM",
+    "END:VEVENT",
+    "END:VCALENDAR",
+  ].join("\r\n");
+
+  const blob = new Blob([ics], { type: "text/calendar;charset=utf-8" });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement("a");
+  a.href     = url;
+  a.download = "liam-bakke-studios-booking.ics";
+  a.click();
+  URL.revokeObjectURL(url);
+}
+
 function Booking() {
   const [sent, setSent] = useState(false);
 
@@ -657,6 +701,7 @@ function Booking() {
       `Svar direkte på denne e-posten for å bekrefte booking.`,
     ].join("\r\n");
 
+    if (date) downloadIcs(name, service, date, message);
     window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`🎵 Booking – ${name} – ${service}`)}&body=${encodeURIComponent(body)}`;
     setSent(true);
   }
@@ -715,6 +760,9 @@ function Booking() {
               <h3 className="font-display text-2xl mb-2" style={{ color: "oklch(0.97 0.01 240)" }}>E-post klar!</h3>
               <p className="text-sm" style={{ color: "oklch(0.65 0.04 265)" }}>
                 E-postappen din åpnet seg med meldingen ferdig utfylt. Send den så svarer Liam innen 24 timer.
+              </p>
+              <p className="text-sm mt-2" style={{ color: "oklch(0.68 0.16 168)" }}>
+                📅 Kalender-fil lastet ned — åpne den for å legge til i kalenderen din med påminnelse dagen før.
               </p>
               <button
                 onClick={() => setSent(false)}
