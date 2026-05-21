@@ -39,7 +39,7 @@ export function CherryBlossomTree() {
         bottom: 0,
         left: "50%",
         transform: "translateX(-55%)",
-        zIndex: -1,
+        zIndex: 0,
         pointerEvents: "none",
         width: "min(680px, 95vw)",
       }}
