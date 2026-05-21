@@ -644,16 +644,20 @@ function Booking() {
     const date    = fd.get("date") as string;
     const message = fd.get("message") as string;
     const body = [
-      `Hei Liam!`,
+      `Ny bookingforespørsel fra nettsiden`,
       ``,
-      `Navn: ${name}`,
+      `Fra:      ${name}`,
       `Tjeneste: ${service}`,
-      date ? `Ønsket dato: ${date}` : "",
+      `Dato:     ${date || "Ikke oppgitt"}`,
       ``,
-      message,
-    ].filter((l) => l !== undefined).join("\r\n");
+      `Melding:`,
+      message || "Ingen melding",
+      ``,
+      `---`,
+      `Svar direkte på denne e-posten for å bekrefte booking.`,
+    ].join("\r\n");
 
-    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent("Booking via nettside")}&body=${encodeURIComponent(body)}`;
+    window.location.href = `mailto:${EMAIL}?subject=${encodeURIComponent(`🎵 Booking – ${name} – ${service}`)}&body=${encodeURIComponent(body)}`;
     setSent(true);
   }
 
