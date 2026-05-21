@@ -28,7 +28,7 @@ function AdminPortal({ onClose }: { onClose: () => void }) {
     const r = await fetch("/api/blocked-dates", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password, dates: [] }),
+      body: JSON.stringify({ password }),
     });
     setLoading(false);
     if (r.ok) {

@@ -51,7 +51,7 @@ export function AdminPage() {
     const r = await fetch("/api/blocked-dates", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ password, dates: [] }),
+      body: JSON.stringify({ password }),
     });
     if (r.ok) {
       setSavedPw(password);
