@@ -363,7 +363,20 @@ function SpotifyPortfolio() {
       className="grid grid-cols-2 gap-3"
     >
       {SPOTIFY_IDS.map((id, i) => (
-        <div key={id} style={{ position: "relative" }}>
+        <div key={id}>
+          {/* Play count badge sits above the iframe */}
+          <div style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "5px",
+            marginBottom: "6px",
+            paddingLeft: "4px",
+          }}>
+            <Play style={{ width: 11, height: 11, color: "oklch(0.68 0.16 168)", fill: "oklch(0.68 0.16 168)" }} />
+            <span style={{ fontSize: "11px", fontWeight: 600, color: "oklch(0.65 0.04 265)", letterSpacing: "0.03em" }}>
+              {STREAM_COUNTS[i]}
+            </span>
+          </div>
           <iframe
             src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
             width="100%"
@@ -372,25 +385,6 @@ function SpotifyPortfolio() {
             loading="lazy"
             style={{ borderRadius: "12px", border: "none", display: "block" }}
           />
-          {/* Play count badge */}
-          <div style={{
-            position: "absolute",
-            top: "10px",
-            right: "12px",
-            display: "flex",
-            alignItems: "center",
-            gap: "5px",
-            background: "rgba(0,0,0,0.55)",
-            backdropFilter: "blur(6px)",
-            borderRadius: "999px",
-            padding: "3px 10px 3px 7px",
-            pointerEvents: "none",
-          }}>
-            <Play style={{ width: 11, height: 11, color: "oklch(0.68 0.16 168)", fill: "oklch(0.68 0.16 168)" }} />
-            <span style={{ fontSize: "11px", fontWeight: 600, color: "oklch(0.90 0.02 265)", letterSpacing: "0.03em" }}>
-              {STREAM_COUNTS[i]}
-            </span>
-          </div>
         </div>
       ))}
     </motion.div>
