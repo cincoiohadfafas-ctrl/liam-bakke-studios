@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { put, list, download } from "@vercel/blob";
+import { put, list, head } from "@vercel/blob";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Cache-Control", "no-store");
@@ -9,7 +9,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     try {
       const { blobs } = await list({ prefix: "blocked-dates" });
       if (blobs.length === 0) return res.json({ dates: [] });
-      const r = await download(blobs[0].url);
+      const blob = await head(blobs[0].url);
+      const r = await fetch(blob.downloadUrl);
       const data = await r.json();
       return res.json(data);
     } catch {
