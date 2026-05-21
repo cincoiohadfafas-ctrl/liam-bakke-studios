@@ -11,13 +11,12 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EMAIL, INSTAGRAM_URL, PHONE, SPOTIFY_URL } from "@/lib/utils";
 import studio from "@/assets/studio2.jpg";
 import { LeafDecor } from "@/components/LeafDecor";
-import { SpotifyTracks } from "@/components/SpotifyTracks";
 
 /* ─── Head / SEO ─────────────────────────────────────────────────── */
 export function IndexPage() {
@@ -37,7 +36,6 @@ export function IndexPage() {
           <Hero />
           <Services />
           <Portfolio />
-          <SpotifyTracks />
           <Pricing />
           <Reviews />
           <Booking />
@@ -306,17 +304,7 @@ function Services() {
 }
 
 /* ─── Portfolio ──────────────────────────────────────────────────── */
-const BEATS = [
-  { title: "Midnight Drive",    genre: "Trap",    bpm: "140 BPM", dur: "3:42" },
-  { title: "Northern Lights",   genre: "R&B",     bpm: "92 BPM",  dur: "4:18" },
-  { title: "Velvet Static",     genre: "Hip-hop", bpm: "128 BPM", dur: "2:56" },
-  { title: "Echoes of You",     genre: "Pop",     bpm: "110 BPM", dur: "3:11" },
-  { title: "Concrete Jungle",   genre: "Drill",   bpm: "144 BPM", dur: "3:27" },
-];
-
 function Portfolio() {
-  const [playing, setPlaying] = useState<number | null>(null);
-
   return (
     <section id="portfolio" className="relative py-28 px-5">
       <div className="max-w-7xl mx-auto">
@@ -345,65 +333,54 @@ function Portfolio() {
           </a>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="rounded-2xl border overflow-hidden"
-          style={{
-            background: "oklch(0.20 0.05 280 / 0.6)",
-            borderColor: "oklch(0.32 0.06 280 / 0.5)",
-            backdropFilter: "blur(12px)",
-          }}
-        >
-          {BEATS.map((beat, i) => (
-            <div
-              key={beat.title}
-              className="group flex items-center gap-4 px-5 py-4 cursor-pointer transition-all"
-              style={{ borderTop: i > 0 ? "1px solid oklch(0.32 0.06 280 / 0.3)" : undefined }}
-              onClick={() => setPlaying(playing === i ? null : i)}
-              onMouseEnter={(e) => { (e.currentTarget as HTMLDivElement).style.background = "oklch(0.62 0.18 280 / 0.08)"; }}
-              onMouseLeave={(e) => { (e.currentTarget as HTMLDivElement).style.background = "transparent"; }}
-            >
-              <div
-                className="h-10 w-10 rounded-xl flex items-center justify-center shrink-0 transition-all"
-                style={{
-                  background: playing === i ? "oklch(0.62 0.18 280 / 0.4)" : "oklch(0.62 0.18 280 / 0.15)",
-                }}
-              >
-                <Play
-                  className="h-4 w-4"
-                  style={{ color: "oklch(0.68 0.16 168)" }}
-                  fill={playing === i ? "oklch(0.68 0.16 168)" : "none"}
-                />
-              </div>
-              <div className="flex-1 min-w-0">
-                <div className="font-display text-base truncate" style={{ color: "oklch(0.97 0.01 240)" }}>{beat.title}</div>
-                <div className="text-xs" style={{ color: "oklch(0.65 0.04 265)" }}>
-                  {beat.genre} · {beat.bpm}
-                </div>
-              </div>
-              <div className="text-sm tabular-nums shrink-0" style={{ color: "oklch(0.60 0.04 265)" }}>{beat.dur}</div>
-              <div
-                className="hidden md:block w-24 h-1 rounded-full overflow-hidden shrink-0"
-                style={{ background: "oklch(0.28 0.06 280)" }}
-              >
-                <div
-                  className="h-full transition-all duration-300"
-                  style={{
-                    width: playing === i ? "65%" : "30%",
-                    background: "linear-gradient(to right, oklch(0.62 0.18 280), oklch(0.68 0.16 168))",
-                  }}
-                />
-              </div>
-              <span className="text-xs shrink-0 hidden md:inline" style={{ color: "oklch(0.50 0.04 265)" }}>
-                0{i + 1}
-              </span>
-            </div>
-          ))}
-        </motion.div>
+        <SpotifyPortfolio />
       </div>
     </section>
+  );
+}
+
+function SpotifyPortfolio() {
+  const [ids, setIds] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetch("/api/spotify")
+      .then(r => r.ok ? r.json() : [])
+      .then((data: { id: string }[]) => {
+        setIds(data.map(t => t.id));
+        setLoading(false);
+      })
+      .catch(() => setLoading(false));
+  }, []);
+
+  if (loading) return (
+    <div className="space-y-3">
+      {Array.from({ length: 4 }).map((_, i) => (
+        <div key={i} className="h-20 rounded-xl animate-pulse"
+          style={{ background: "oklch(0.20 0.05 280 / 0.5)" }} />
+      ))}
+    </div>
+  );
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      className="space-y-3"
+    >
+      {ids.map(id => (
+        <iframe
+          key={id}
+          src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
+          width="100%"
+          height="152"
+          allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+          loading="lazy"
+          style={{ borderRadius: "12px", border: "none", display: "block" }}
+        />
+      ))}
+    </motion.div>
   );
 }
 
