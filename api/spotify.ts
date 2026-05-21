@@ -49,7 +49,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     // Sort by release date and take top 5
     const latest = albumsData.items
       .sort((a, b) => b.release_date.localeCompare(a.release_date))
-      .slice(0, 5);
+      .slice(0, 4);
 
     // Fetch first track of each release to get duration
     const tracks = await Promise.all(

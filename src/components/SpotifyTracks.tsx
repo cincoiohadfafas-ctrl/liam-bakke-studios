@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Music2, Clock, ExternalLink } from "lucide-react";
+import { Music2, Clock, ExternalLink, Play } from "lucide-react";
 
 type Track = {
   id: string;
@@ -78,17 +78,24 @@ export function SpotifyTracks() {
                   {i + 1}
                 </span>
 
-                {/* Artwork */}
-                {track.artwork ? (
-                  <img src={track.artwork} alt={track.name}
-                    className="h-12 w-12 rounded-lg object-cover shrink-0"
-                    style={{ boxShadow: "0 4px 12px black/40" }} />
-                ) : (
-                  <div className="h-12 w-12 rounded-lg shrink-0 flex items-center justify-center"
-                    style={{ background: "oklch(0.22 0.06 280)" }}>
-                    <Music2 className="h-5 w-5" style={{ color: "oklch(0.50 0.04 265)" }} />
-                  </div>
-                )}
+                {/* Artwork + play button overlay */}
+                <div className="relative h-12 w-12 shrink-0 group/art">
+                  {track.artwork ? (
+                    <img src={track.artwork} alt={track.name}
+                      className="h-12 w-12 rounded-lg object-cover" />
+                  ) : (
+                    <div className="h-12 w-12 rounded-lg flex items-center justify-center"
+                      style={{ background: "oklch(0.22 0.06 280)" }}>
+                      <Music2 className="h-5 w-5" style={{ color: "oklch(0.50 0.04 265)" }} />
+                    </div>
+                  )}
+                  <a href={track.spotifyUrl} target="_blank" rel="noreferrer"
+                    className="absolute inset-0 rounded-lg flex items-center justify-center opacity-0 group-hover/art:opacity-100 transition-opacity"
+                    style={{ background: "black/60" }}
+                    onClick={e => e.stopPropagation()}>
+                    <Play className="h-5 w-5 fill-white text-white" />
+                  </a>
+                </div>
 
                 {/* Info */}
                 <div className="flex-1 min-w-0">
