@@ -15,7 +15,7 @@ const LINKS = [
   { label: "Booking", to: "/", hash: "booking" },
 ] as const;
 
-function AdminPortal() {
+function AdminPortal({ onClose }: { onClose: () => void }) {
   const [password, setPassword] = useState("");
   const [error, setError]       = useState("");
   const [loading, setLoading]   = useState(false);
@@ -50,7 +50,7 @@ function AdminPortal() {
         backdropFilter: "blur(12px)",
         display: "flex", alignItems: "center", justifyContent: "center",
       }}
-      onClick={e => e.target === e.currentTarget && navigate({ to: "/" })}
+      onClick={e => e.target === e.currentTarget && onClose()}
     >
       <motion.div
         initial={{ scale: 0.95, opacity: 0 }}
@@ -125,7 +125,7 @@ export function SiteFooter() {
     <>
     <AnimatePresence>
       {showDino && <DinoGame onClose={() => setShowDino(false)} />}
-      {showAdmin && <AdminPortal />}
+      {showAdmin && <AdminPortal onClose={() => setShowAdmin(false)} />}
     </AnimatePresence>
     <footer
       className="relative border-t"
