@@ -271,7 +271,7 @@ function Vine({
   opacity,
   flip,
   width,
-  zIndex = 50,
+  zIndex = -1,
 }: {
   progress: MotionValue<number>;
   triggerStart: number;
