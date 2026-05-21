@@ -2,6 +2,9 @@ import { Link } from "@tanstack/react-router";
 import { Instagram, Music2, Mail, Phone } from "lucide-react";
 import { EMAIL, PHONE, INSTAGRAM_URL, SPOTIFY_URL } from "@/lib/utils";
 import logoFull from "@/assets/logo-full.png";
+import { useState } from "react";
+import { AnimatePresence } from "framer-motion";
+import { DinoGame } from "./DinoGame";
 
 const LINKS = [
   { label: "Tjenester", to: "/", hash: "tjenester" },
@@ -13,7 +16,20 @@ const LINKS = [
 ] as const;
 
 export function SiteFooter() {
+  const [clicks, setClicks] = useState(0);
+  const [showDino, setShowDino] = useState(false);
+
+  function handleSecretClick() {
+    const next = clicks + 1;
+    setClicks(next);
+    if (next >= 5) { setShowDino(true); setClicks(0); }
+  }
+
   return (
+    <>
+    <AnimatePresence>
+      {showDino && <DinoGame onClose={() => setShowDino(false)} />}
+    </AnimatePresence>
     <footer
       className="relative border-t"
       style={{ borderColor: "oklch(0.32 0.06 280 / 0.4)", background: "oklch(0.13 0.04 280)" }}
@@ -85,7 +101,17 @@ export function SiteFooter() {
           className="mt-10 pt-6 border-t flex flex-col sm:flex-row items-center justify-between gap-3 text-xs"
           style={{ borderColor: "oklch(0.32 0.06 280 / 0.3)", color: "oklch(0.50 0.04 265)" }}
         >
-          <span>© {new Date().getFullYear()} Liam Bakke Studios — Enkeltpersonforetak</span>
+          <span>
+            ©{" "}
+            <span
+              onClick={handleSecretClick}
+              className="cursor-default select-none"
+              title=""
+            >
+              {new Date().getFullYear()}
+            </span>
+            {" "}Liam Bakke Studios — Enkeltpersonforetak
+          </span>
           <div className="flex items-center gap-4">
             <a href={INSTAGRAM_URL} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Instagram</a>
             <a href={SPOTIFY_URL} target="_blank" rel="noreferrer" className="hover:text-white transition-colors">Spotify</a>
@@ -93,5 +119,6 @@ export function SiteFooter() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

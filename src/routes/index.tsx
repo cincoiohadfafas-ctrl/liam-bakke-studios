@@ -11,7 +11,7 @@ import {
   Sparkles,
   Star,
 } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { EMAIL, INSTAGRAM_URL, PHONE, SPOTIFY_URL } from "@/lib/utils";
@@ -339,29 +339,14 @@ function Portfolio() {
   );
 }
 
+const SPOTIFY_IDS = [
+  "2kVgVg482yR0LaPbNv1RJn",
+  "7hMj275zk6mrukM9TCKIrW",
+  "0UjY6d49LcB9gefNGJjxXq",
+  "1ENgD2Ug9odXNKl5SfGA44",
+];
+
 function SpotifyPortfolio() {
-  const [ids, setIds] = useState<string[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    fetch("/api/spotify")
-      .then(r => r.ok ? r.json() : [])
-      .then((data: { id: string }[]) => {
-        setIds(data.map(t => t.id));
-        setLoading(false);
-      })
-      .catch(() => setLoading(false));
-  }, []);
-
-  if (loading) return (
-    <div className="space-y-3">
-      {Array.from({ length: 4 }).map((_, i) => (
-        <div key={i} className="h-20 rounded-xl animate-pulse"
-          style={{ background: "oklch(0.20 0.05 280 / 0.5)" }} />
-      ))}
-    </div>
-  );
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
@@ -369,12 +354,12 @@ function SpotifyPortfolio() {
       viewport={{ once: true }}
       className="grid grid-cols-2 gap-3"
     >
-      {ids.map(id => (
+      {SPOTIFY_IDS.map(id => (
         <iframe
           key={id}
           src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
           width="100%"
-          height="136"
+          height="120"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
           loading="lazy"
           style={{ borderRadius: "12px", border: "none", display: "block" }}
