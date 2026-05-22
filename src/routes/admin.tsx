@@ -1,5 +1,6 @@
 import { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Lock, CheckCircle, Loader2 } from "lucide-react";
+import { Link } from "@tanstack/react-router";
 import logoFull from "@/assets/logo-full.png";
 import { LeafDecor } from "@/components/LeafDecor";
 
@@ -110,8 +111,8 @@ export function AdminPage() {
             borderColor: "oklch(0.32 0.06 280 / 0.5)",
           }}
         >
-          <img src={logoFull} alt="Liam Bakke Studios" className="h-7 mb-8 opacity-80"
-            style={{ filter: "invert(1)" }} />
+          <Link to="/"><img src={logoFull} alt="Liam Bakke Studios" className="h-7 mb-8 opacity-80"
+            style={{ filter: "invert(1)" }} /></Link>
           <div className="flex items-center gap-2 mb-6">
             <Lock className="h-4 w-4" style={{ color: "oklch(0.68 0.16 168)" }} />
             <span className="text-sm font-semibold" style={{ color: "oklch(0.90 0.02 265)" }}>
@@ -161,8 +162,8 @@ export function AdminPage() {
       <LeafDecor />
       <div className="max-w-lg mx-auto">
         <div className="flex items-center justify-between mb-10">
-          <img src={logoFull} alt="Liam Bakke Studios" className="h-7 opacity-80"
-            style={{ filter: "invert(1)" }} />
+          <Link to="/"><img src={logoFull} alt="Liam Bakke Studios" className="h-7 opacity-80"
+            style={{ filter: "invert(1)" }} /></Link>
           <div className="flex items-center gap-2 text-xs" style={{ color: "oklch(0.55 0.04 265)" }}>
             {saving
               ? <><Loader2 className="h-3 w-3 animate-spin" /> Lagrer…</>
