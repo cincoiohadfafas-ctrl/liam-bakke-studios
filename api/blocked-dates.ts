@@ -29,7 +29,6 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       await put("blocked-dates.json", JSON.stringify({ dates }), {
         access: "public",
         contentType: "application/json",
-        addRandomSuffix: false,
       });
     }
     return res.json({ ok: true });
