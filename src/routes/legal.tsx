@@ -25,17 +25,19 @@ const SECTIONS = [
   {
     title: "Depositum",
     body: [
-      "Det kreves et depositum på 50 % av total sessionpris for å bekrefte bookingen.",
-      "Depositumet er ikke-refunderbart ved kansellering under 72 timer før oppmøte.",
+      "For å bekrefte booking kreves et depositum på 20 % av totalbeløpet.",
+      "Depositumet fungerer som en sikkerhet for reservert tid, planlegging og eventuelt påbegynt arbeid.",
+      "Depositumet refunderes ikke ved avbestilling etter bekreftet booking.",
       "Depositumet går til fradrag på den totale prisen ved gjennomført session.",
     ],
   },
   {
     title: "Angrerett",
     body: [
-      "I henhold til norsk angrerettlov (angrerettloven) har forbrukere som bestiller tjenester digitalt normalt 14 dagers angrerett.",
-      "Angreretten bortfaller dersom tjenesten (innspillingssession) er påbegynt med forbrukerens samtykke innen angrefristen.",
-      "Ved bruk av angreretten kontaktes Liam Bakke Studio skriftlig på contact.liambakke@gmail.com.",
+      "Ved booking av studiosessions gjelder ikke ordinær angrerett etter at timen er bekreftet og arbeidet/bookingen er startet.",
+      "Dette skyldes at tjenesten reserverer spesifikk tid og kapasitet, og leveres på avtalt dato og tidspunkt.",
+      "Når kunden gjennomfører booking og godkjenner vilkårene, samtykker kunden til at tjenesten påbegynnes umiddelbart.",
+      "Etter at session er booket eller arbeidet er startet, bortfaller angreretten i henhold til regler om tjenester som påbegynnes etter kundens samtykke og tidsbestemte bookingtjenester.",
     ],
   },
   {
