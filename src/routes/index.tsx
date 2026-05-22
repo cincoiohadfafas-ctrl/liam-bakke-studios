@@ -289,13 +289,6 @@ function Services() {
           className="mt-8 flex flex-wrap gap-3"
         >
           <Link
-            to="/akustikk"
-            className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all hover:bg-white/5"
-            style={{ borderColor: "oklch(0.40 0.08 280 / 0.6)", color: "oklch(0.80 0.04 265)" }}
-          >
-            Se akustikkbehandling <ArrowRight className="h-4 w-4" />
-          </Link>
-          <Link
             to="/"
             hash="priser"
             className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all hover:bg-white/5"

@@ -10,7 +10,7 @@ const LINKS = [
   { label: "Tjenester", to: "/", hash: "tjenester" },
   { label: "Priser", to: "/", hash: "priser" },
   { label: "Om Liam Bakke", to: "/om", hash: undefined },
-  { label: "Akustikk", to: "/akustikk", hash: undefined },
+
   { label: "As featured", to: "/featured", hash: undefined },
   { label: "Booking", to: "/", hash: "booking" },
   { label: "Beat Generator", to: "/beats", hash: undefined },

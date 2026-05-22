@@ -165,13 +165,6 @@ export function FeaturedPage() {
                 >
                   Book studio <ArrowRight className="h-4 w-4" />
                 </Link>
-                <Link
-                  to="/akustikk"
-                  className="inline-flex items-center gap-2 rounded-full border px-5 py-2.5 text-sm font-medium transition-all hover:bg-white/5"
-                  style={{ borderColor: "oklch(0.40 0.08 280 / 0.7)", color: "oklch(0.85 0.03 265)" }}
-                >
-                  Se akustikken <ExternalLink className="h-4 w-4" />
-                </Link>
               </div>
             </motion.div>
           </div>
