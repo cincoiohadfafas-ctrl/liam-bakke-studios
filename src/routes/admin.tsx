@@ -1,6 +1,7 @@
-import { useState, useEffect, useCallback } from "react";
+import { useState, useCallback } from "react";
 import { ChevronLeft, ChevronRight, Lock, CheckCircle, Loader2 } from "lucide-react";
 import logoFull from "@/assets/logo-full.png";
+import { LeafDecor } from "@/components/LeafDecor";
 
 const DAYS = ["Man", "Tir", "Ons", "Tor", "Fre", "Lør", "Søn"];
 const MONTHS = [
@@ -98,9 +99,10 @@ export function AdminPage() {
   if (!authed) {
     return (
       <div
-        className="min-h-screen flex items-center justify-center px-5"
+        className="min-h-screen flex items-center justify-center px-5 relative overflow-hidden"
         style={{ background: "oklch(0.13 0.04 280)" }}
       >
+        <LeafDecor />
         <div
           className="w-full max-w-sm rounded-2xl border p-8"
           style={{
@@ -153,9 +155,10 @@ export function AdminPage() {
 
   return (
     <div
-      className="min-h-screen px-5 py-12"
+      className="min-h-screen px-5 py-12 relative overflow-hidden"
       style={{ background: "oklch(0.13 0.04 280)" }}
     >
+      <LeafDecor />
       <div className="max-w-lg mx-auto">
         <div className="flex items-center justify-between mb-10">
           <img src={logoFull} alt="Liam Bakke Studios" className="h-7 opacity-80"
