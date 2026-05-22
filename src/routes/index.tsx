@@ -35,11 +35,11 @@ export function IndexPage() {
         <main>
           <Hero />
           <Services />
-          <ArtistGallery />
           <Portfolio />
           <Pricing />
           <Reviews />
           <Booking />
+          <ArtistGallery />
           <ContactStrip />
         </main>
         <SiteFooter />
@@ -376,7 +376,7 @@ function ArtistGallery() {
             Artister
           </p>
           <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
-            Hvem vi har{" "}
+            Artister jeg har{" "}
             <span className="text-gradient">jobbet med.</span>
           </h2>
         </motion.div>
