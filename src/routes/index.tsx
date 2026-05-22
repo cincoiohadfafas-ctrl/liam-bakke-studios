@@ -496,8 +496,8 @@ function Portfolio() {
               Musikk
             </p>
             <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
-              Nyeste{" "}
-              <span className="text-gradient">Utgivelser.</span>
+              Utvalgte{" "}
+              <span className="text-gradient">Låter.</span>
             </h2>
           </motion.div>
           <a
