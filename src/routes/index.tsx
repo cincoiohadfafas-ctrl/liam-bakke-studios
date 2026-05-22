@@ -35,6 +35,7 @@ export function IndexPage() {
         <main>
           <Hero />
           <Services />
+          <Discography />
           <Portfolio />
           <Pricing />
           <Reviews />
@@ -304,6 +305,103 @@ function Services() {
             Se priser <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Discography ────────────────────────────────────────────────── */
+const RELEASES = [
+  { title: "Låste Dører",       url: "https://open.spotify.com/album/4c6l6XAIe2JIMdRrgKF7Vv" },
+  { title: "Klandre Deg",       url: "https://open.spotify.com/album/0AsqmzAn7doox4WgW19JDU" },
+  { title: "Mannen i Speilet",  url: "https://open.spotify.com/album/5mdOf9EAfQz5cuTcrKS8G4" },
+  { title: "MGPjr Parasitt",    url: "https://open.spotify.com/track/4uHfUn8OKImH1vPGhN7CDw" },
+];
+
+function DiscCard({ title, url }: { title: string; url: string }) {
+  const [cover, setCover] = useState<string | null>(null);
+
+  useEffect(() => {
+    fetch(`https://open.spotify.com/oembed?url=${encodeURIComponent(url)}`)
+      .then(r => r.json())
+      .then(d => setCover(d.thumbnail_url ?? null))
+      .catch(() => {});
+  }, [url]);
+
+  return (
+    <motion.a
+      href={url}
+      target="_blank"
+      rel="noreferrer"
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5 }}
+      className="group block rounded-2xl overflow-hidden"
+      style={{ background: "oklch(0.20 0.05 280 / 0.6)" }}
+    >
+      <div className="relative aspect-square overflow-hidden">
+        {cover ? (
+          <img
+            src={cover}
+            alt={title}
+            className="h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-105"
+          />
+        ) : (
+          <div
+            className="h-full w-full animate-pulse"
+            style={{ background: "oklch(0.22 0.06 280)" }}
+          />
+        )}
+        <div
+          className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+          style={{ background: "oklch(0.10 0.04 280 / 0.4)" }}
+        />
+      </div>
+      <div
+        className="px-4 py-3 transition-all duration-300"
+        style={{
+          boxShadow: "0 8px 30px -8px oklch(0.10 0.04 280 / 0.6)",
+        }}
+      >
+        <p
+          className="font-display text-sm font-semibold truncate transition-colors duration-200 group-hover:text-white"
+          style={{ color: "oklch(0.85 0.03 265)" }}
+        >
+          {title}
+        </p>
+        <p className="text-xs mt-0.5" style={{ color: "oklch(0.55 0.04 265)" }}>Spotify</p>
+      </div>
+    </motion.a>
+  );
+}
+
+function Discography() {
+  return (
+    <section className="relative py-28 px-5">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mb-12"
+        >
+          <p className="text-xs uppercase tracking-widest font-semibold mb-3" style={{ color: "oklch(0.68 0.16 168)" }}>
+            Diskografi
+          </p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
+            Utvalgte{" "}
+            <span className="text-gradient">utgivelser.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-5">
+          {RELEASES.map((r, i) => (
+            <motion.div key={r.title} transition={{ delay: i * 0.08 }}>
+              <DiscCard title={r.title} url={r.url} />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
