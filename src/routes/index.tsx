@@ -35,6 +35,7 @@ export function IndexPage() {
         <main>
           <Hero />
           <Services />
+          <ArtistGallery />
           <Portfolio />
           <Pricing />
           <Reviews />
@@ -303,6 +304,88 @@ function Services() {
             Se priser <ArrowRight className="h-4 w-4" />
           </Link>
         </motion.div>
+      </div>
+    </section>
+  );
+}
+
+/* ─── Artist Gallery ─────────────────────────────────────────────── */
+const ARTISTS: { name: string; img?: string }[] = [
+  { name: "Artist 1" },
+  { name: "Artist 2" },
+  { name: "Artist 3" },
+  { name: "Artist 4" },
+  { name: "Artist 5" },
+  { name: "Artist 6" },
+  { name: "Artist 7" },
+  { name: "Artist 8" },
+];
+
+function ArtistCard({ name, img }: { name: string; img?: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 24 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, margin: "-40px" }}
+      transition={{ duration: 0.5 }}
+      className="group relative overflow-hidden rounded-2xl aspect-[3/4]"
+      style={{ background: "oklch(0.20 0.05 280 / 0.6)" }}
+    >
+      {img ? (
+        <img
+          src={img}
+          alt={name}
+          className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 ease-out group-hover:scale-110"
+        />
+      ) : (
+        <div
+          className="absolute inset-0 flex items-center justify-center transition-transform duration-500 ease-out group-hover:scale-110"
+          style={{ background: "oklch(0.22 0.06 280)" }}
+        >
+          <span className="font-display text-4xl font-bold opacity-10" style={{ color: "oklch(0.97 0.01 240)" }}>
+            {name.charAt(0)}
+          </span>
+        </div>
+      )}
+
+      {/* Gradient overlay always present, strengthens on hover */}
+      <div
+        className="absolute inset-0 transition-opacity duration-300 opacity-40 group-hover:opacity-80"
+        style={{ background: "linear-gradient(to top, oklch(0.10 0.04 280) 0%, transparent 55%)" }}
+      />
+
+      {/* Name fades in on hover */}
+      <div className="absolute bottom-0 left-0 right-0 p-4 translate-y-2 opacity-0 transition-all duration-300 group-hover:translate-y-0 group-hover:opacity-100">
+        <p className="font-display text-base font-semibold" style={{ color: "oklch(0.97 0.01 240)" }}>{name}</p>
+      </div>
+    </motion.div>
+  );
+}
+
+function ArtistGallery() {
+  return (
+    <section className="relative py-28 px-5">
+      <div className="max-w-7xl mx-auto">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          className="max-w-2xl mb-12"
+        >
+          <p className="text-xs uppercase tracking-widest font-semibold mb-3" style={{ color: "oklch(0.68 0.16 168)" }}>
+            Artister
+          </p>
+          <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
+            Hvem vi har{" "}
+            <span className="text-gradient">jobbet med.</span>
+          </h2>
+        </motion.div>
+
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+          {ARTISTS.map((a) => (
+            <ArtistCard key={a.name} name={a.name} img={a.img} />
+          ))}
+        </div>
       </div>
     </section>
   );
