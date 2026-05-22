@@ -19,6 +19,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === "POST") {
     const { password, dates } = req.body as { password: string; dates?: string[] };
+    console.log("pw_len:", password.length, "env_len:", process.env.ADMIN_PASSWORD?.length);
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Feil passord" });
     }
