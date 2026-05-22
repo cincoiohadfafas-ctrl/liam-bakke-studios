@@ -99,7 +99,6 @@ function Hero() {
     <section
       id="top"
       className="relative min-h-screen flex items-center overflow-hidden noise-overlay"
-      style={{ isolation: "isolate" }}
     >
       <HeroBg />
       <div className="max-w-7xl mx-auto px-5 pt-32 pb-20 w-full relative z-10">
