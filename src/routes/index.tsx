@@ -20,7 +20,7 @@ import { LeafDecor } from "@/components/LeafDecor";
 import artistSander from "@/assets/artist-sander-systad.avif";
 import artistLavran from "@/assets/artist-lavran.jpg";
 import artistEmil from "@/assets/artist-emil-trellevik.jpg";
-import artistMatto from "@/assets/artist-matto-majestet.webp";
+import artistSl1mpack from "@/assets/artist-sl1mpack.jpg";
 
 /* ─── Head / SEO ─────────────────────────────────────────────────── */
 export function IndexPage() {
@@ -405,7 +405,7 @@ function Discography() {
 
 /* ─── Artist Gallery ─────────────────────────────────────────────── */
 const ARTISTS: { name: string; img?: string }[] = [
-  { name: "Matto Majestet", img: artistMatto },
+  { name: "Sl1mpack",        img: artistSl1mpack },
   { name: "Emil Trellevik", img: artistEmil },
   { name: "Sander Systad",  img: artistSander },
   { name: "Lavran",         img: artistLavran },
