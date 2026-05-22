@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Instagram, Music2, Mail, Phone } from "lucide-react";
-import { EMAIL, PHONE, INSTAGRAM_URL, SPOTIFY_URL } from "@/lib/utils";
+import { EMAIL, PHONE, INSTAGRAM_URL, SPOTIFY_URL, TIKTOK_URL } from "@/lib/utils";
 import logoMark from "@/assets/logo-mark.png";
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
@@ -184,7 +184,7 @@ export function SiteFooter() {
                 { icon: Phone, value: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
                 { icon: Mail, value: EMAIL, href: `mailto:${EMAIL}` },
                 { icon: Instagram, value: "@liam_bakke", href: INSTAGRAM_URL },
-                { icon: Music2, value: "L. B", href: SPOTIFY_URL },
+                { icon: Music2, value: "Liam Bakke", href: TIKTOK_URL },
               ].map(({ icon: Icon, value, href }) => (
                 <li key={value} className="min-w-0">
                   <a

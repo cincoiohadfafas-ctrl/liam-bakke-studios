@@ -1093,7 +1093,7 @@ function ContactStrip() {
             { label: "Telefon", value: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
             { label: "E-post", value: EMAIL, href: `mailto:${EMAIL}` },
             { label: "Instagram", value: "@liam_bakke", href: INSTAGRAM_URL },
-            { label: "Spotify", value: "liambakke", href: SPOTIFY_URL },
+            { label: "Spotify", value: "Liam Bakke", href: SPOTIFY_URL },
           ].map((c) => (
             <a
               key={c.label}
