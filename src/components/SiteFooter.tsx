@@ -121,12 +121,11 @@ export function SiteFooter() {
     if (next >= 5) { setShowDino(true); setClicks(0); }
   }
 
-  const longPressTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  function handleLogoPointerDown() {
-    longPressTimer.current = setTimeout(() => setShowAdmin(true), 1500);
-  }
-  function handleLogoPointerUp() {
-    if (longPressTimer.current) clearTimeout(longPressTimer.current);
+  const [logoClicks, setLogoClicks] = useState(0);
+  function handleLogoClick() {
+    const next = logoClicks + 1;
+    setLogoClicks(next);
+    if (next >= 5) { setShowAdmin(true); setLogoClicks(0); }
   }
 
   return (
@@ -143,11 +142,7 @@ export function SiteFooter() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
           {/* Brand */}
           <div>
-            <Link to="/" className="inline-block mb-4"
-              onPointerDown={handleLogoPointerDown}
-              onPointerUp={handleLogoPointerUp}
-              onPointerLeave={handleLogoPointerUp}
-            >
+            <Link to="/" className="inline-block mb-4" onClick={handleLogoClick}>
               <img src={logoFull} alt="Liam Bakke Studios" className="h-9" style={{ filter: "invert(1)" }} />
             </Link>
             <p className="text-sm leading-relaxed" style={{ color: "oklch(0.60 0.04 265)" }}>
