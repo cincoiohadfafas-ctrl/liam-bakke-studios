@@ -161,9 +161,7 @@ export function BeatsPage() {
     const snapMelody = melodyGrid.map(r => [...r]);
     const snapDrums  = { kick: [...drums.kick], snare: [...drums.snare], hat: [...drums.hat] };
 
-    let step = 0;
-    const seq = new Tone.Sequence((time) => {
-      const s = step % STEPS;
+    const seq = new Tone.Sequence((time, s) => {
       setCurrentStep(s);
       if (snapDrums.kick[s])  kick.triggerAttackRelease("C1", "8n", time);
       if (snapDrums.snare[s]) snare.triggerAttackRelease("8n", time);
@@ -172,8 +170,7 @@ export function BeatsPage() {
         .map((on, rowIdx) => on ? midiToNoteName(DISPLAY_NOTES[rowIdx]) : null)
         .filter(Boolean) as string[];
       if (notes.length > 0) mel.triggerAttackRelease(notes, "8n", time);
-      step++;
-    }, undefined, "16n");
+    }, Array.from({ length: STEPS }, (_, i) => i), "16n");
 
     seqRef.current = seq;
     seq.start(0);
@@ -197,16 +194,13 @@ export function BeatsPage() {
       const mel = new Tone.PolySynth(Tone.Synth, { oscillator: { type: "sawtooth" }, envelope: { attack: 0.01, decay: 0.3, sustain: 0.3, release: 0.5 } }).toDestination();
       mel.volume.value = -6;
 
-      let step = 0;
-      const seq = new Tone.Sequence((time) => {
-        const s = step % STEPS;
+      const seq = new Tone.Sequence((time, s) => {
         if (snapDrums.kick[s])  kick.triggerAttackRelease("C1", "8n", time);
         if (snapDrums.snare[s]) snare.triggerAttackRelease("8n", time);
         if (snapDrums.hat[s])   hat.triggerAttackRelease("32n", time);
         const notes = snapMelody[s].map((on, rowIdx) => on ? midiToNoteName(DISPLAY_NOTES[rowIdx]) : null).filter(Boolean) as string[];
         if (notes.length > 0) mel.triggerAttackRelease(notes, "8n", time);
-        step++;
-      }, undefined, "16n");
+      }, Array.from({ length: STEPS }, (_, i) => i), "16n");
       seq.start(0);
       transport.start();
     }, duration);
