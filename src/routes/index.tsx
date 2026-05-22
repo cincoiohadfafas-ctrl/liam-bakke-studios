@@ -164,7 +164,7 @@ function Hero() {
                 color: "oklch(0.90 0.02 265)",
               }}
             >
-              <Play className="h-4 w-4" /> Hør beatsa
+              <Play className="h-4 w-4" /> Hør musikken
             </Link>
           </div>
 
