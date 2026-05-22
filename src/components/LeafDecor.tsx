@@ -322,8 +322,6 @@ export function LeafDecor() {
       <Vine progress={scrollYProgress} triggerStart={0.02} triggerEnd={0.67} right="-12px" opacity={0.90} flip={true}  width={145} zIndex={1} />
       <Vine progress={scrollYProgress} triggerStart={0.05} triggerEnd={0.72} left="90px"   opacity={0.65} flip={false} width={120} zIndex={1} />
       <Vine progress={scrollYProgress} triggerStart={0.08} triggerEnd={0.75} right="85px"  opacity={0.62} flip={true}  width={115} zIndex={1} />
-      <Vine progress={scrollYProgress} triggerStart={0.15} triggerEnd={0.82} left="190px"  opacity={0.38} flip={false} width={95}  zIndex={1} />
-      <Vine progress={scrollYProgress} triggerStart={0.18} triggerEnd={0.85} right="180px" opacity={0.35} flip={true}  width={90}  zIndex={1} />
     </>
   );
 }
