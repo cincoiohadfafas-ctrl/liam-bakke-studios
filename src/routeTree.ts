@@ -9,6 +9,7 @@ const indexRoute    = createRoute({ getParentRoute: () => rootRoute, path: "/", 
 const omRoute       = createRoute({ getParentRoute: () => rootRoute, path: "/om",       component: lazy(() => import("./routes/om").then(m => ({ default: m.OmPage }))) });
 
 const featuredRoute = createRoute({ getParentRoute: () => rootRoute, path: "/featured", component: lazy(() => import("./routes/featured").then(m => ({ default: m.FeaturedPage }))) });
+const legalRoute    = createRoute({ getParentRoute: () => rootRoute, path: "/legal",    component: lazy(() => import("./routes/legal").then(m => ({ default: m.LegalPage }))) });
 const adminRoute    = createRoute({ getParentRoute: () => rootRoute, path: "/admin",    component: lazy(() => import("./routes/admin").then(m => ({ default: m.AdminPage }))) });
 const beatsRoute    = createRoute({ getParentRoute: () => rootRoute, path: "/beats",    component: lazy(() => import("./routes/beats").then(m => ({ default: m.BeatsPage }))) });
 
@@ -17,6 +18,7 @@ export const routeTree = rootRoute.addChildren([
   omRoute,
 
   featuredRoute,
+  legalRoute,
   adminRoute,
   beatsRoute,
 ]);

@@ -9,7 +9,7 @@ const NAV = [
   { label: "Beats", to: "/", hash: "portfolio", pulse: false },
   { label: "Priser", to: "/", hash: "priser", pulse: false },
   { label: "Anmeldelser", to: "/", hash: "anmeldelser", pulse: false },
-  { label: "As featured", to: "/featured", hash: undefined, pulse: true },
+  { label: "Vilkår", to: "/legal", hash: undefined, pulse: false },
   { label: "Om Liam Bakke", to: "/om", hash: undefined, pulse: false },
 ] as const;
 
@@ -18,7 +18,7 @@ const MOBILE_NAV = [
   { label: "Beats", to: "/", hash: "portfolio" },
   { label: "Priser", to: "/", hash: "priser" },
   { label: "Anmeldelser", to: "/", hash: "anmeldelser" },
-  { label: "As featured", to: "/featured", hash: undefined },
+  { label: "Vilkår", to: "/legal", hash: undefined },
   { label: "Om Liam Bakke", to: "/om", hash: undefined },
   { label: "Kontakt", to: "/", hash: "kontakt" },
 ] as const;

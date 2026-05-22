@@ -11,7 +11,7 @@ const LINKS = [
   { label: "Priser", to: "/", hash: "priser" },
   { label: "Om Liam Bakke", to: "/om", hash: undefined },
 
-  { label: "As featured", to: "/featured", hash: undefined },
+  { label: "Vilkår", to: "/legal", hash: undefined },
   { label: "Booking", to: "/", hash: "booking" },
   { label: "Beat Generator", to: "/beats", hash: undefined },
 ] as const;
