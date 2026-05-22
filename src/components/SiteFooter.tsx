@@ -9,7 +9,7 @@ import { DinoGame } from "./DinoGame";
 const LINKS = [
   { label: "Tjenester", to: "/", hash: "tjenester" },
   { label: "Priser", to: "/", hash: "priser" },
-  { label: "Om Liam", to: "/om", hash: undefined },
+  { label: "Om Liam Bakke", to: "/om", hash: undefined },
   { label: "Akustikk", to: "/akustikk", hash: undefined },
   { label: "As featured", to: "/featured", hash: undefined },
   { label: "Booking", to: "/", hash: "booking" },
@@ -144,7 +144,16 @@ export function SiteFooter() {
           {/* Brand */}
           <div>
             <Link to="/" className="inline-block mb-4" onClick={handleLogoClick}>
-              <img src={logoFull} alt="Liam Bakke Studios" className="h-9" style={{ filter: "invert(1)" }} />
+              <img
+                src={logoFull}
+                alt="Liam Bakke Studios"
+                className="h-14"
+                style={{
+                  filter: "invert(1)",
+                  maskImage: "linear-gradient(to right, black 60%, transparent 100%)",
+                  WebkitMaskImage: "linear-gradient(to right, black 60%, transparent 100%)",
+                }}
+              />
             </Link>
             <p className="text-sm leading-relaxed" style={{ color: "oklch(0.60 0.04 265)" }}>
               Profesjonelt innspillingsstudio for artister som tar musikken sin på alvor.
@@ -183,7 +192,7 @@ export function SiteFooter() {
                 { icon: Phone, value: PHONE, href: `tel:${PHONE.replace(/\s/g, "")}` },
                 { icon: Mail, value: EMAIL, href: `mailto:${EMAIL}` },
                 { icon: Instagram, value: "@liam_bakke", href: INSTAGRAM_URL },
-                { icon: Music2, value: "Spotify", href: SPOTIFY_URL },
+                { icon: Music2, value: "L. B", href: SPOTIFY_URL },
               ].map(({ icon: Icon, value, href }) => (
                 <li key={value} className="min-w-0">
                   <a

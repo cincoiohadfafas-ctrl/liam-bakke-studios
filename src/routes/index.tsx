@@ -70,7 +70,7 @@ function HeroBg() {
           src={studio}
           alt="Liam Bakke Studios interior"
           className="h-full w-full object-cover"
-          style={{ transform: "rotate(90deg) scale(1.6)", transformOrigin: "center" }}
+          style={{ transform: "rotate(90deg) scale(2.4)", transformOrigin: "center" }}
         />
       </motion.div>
       <div
@@ -173,8 +173,8 @@ function Hero() {
             style={{ color: "oklch(0.65 0.04 265)" }}
           >
             {[
-              { val: "1000+", lbl: "Beats produsert" },
-              { val: "TV2", lbl: "& MGPjr featured" },
+              { val: "30+", lbl: "Artists worked with" },
+              { val: "NRK", lbl: "& MGPjr featured" },
               { val: "1:1", lbl: "Personlig oppfølging" },
             ].map(({ val, lbl }, i) => (
               <div key={lbl} className="flex items-center gap-6">
@@ -221,7 +221,7 @@ const SERVICES = [
   {
     icon: Sliders,
     title: "Mix & master",
-    body: "Få låten radio-ready. Profesjonell miks og mastering tilpasset prosjektets størrelse og distribusjonskanal.",
+    body: "Få låten radio-ready. Profesjonell mix og mastering tilpasset prosjektets størrelse og distribusjonskanal.",
   },
 ];
 
@@ -381,38 +381,38 @@ const PRICING = [
     price: "750",
     unit: "kr / time",
     desc: "Fleksibelt for korte takes, demoer eller enkeltspor.",
-    features: ["Studio + tekniker", "Rå filer levert", "Booking 24/7"],
-    featured: false,
-  },
-  {
-    name: "Studio Pakke B",
-    price: null,
-    unit: "ta kontakt",
-    desc: "2 timer innspilling med beat og lett miks inkludert.",
-    features: ["2 timer studio", "Beat inkludert", "Lett miks", "Rå filer + WAV"],
+    features: ["Innspilling i studio", "Rå filer levert", "Booking 24/7"],
     featured: false,
   },
   {
     name: "Studio Pakke A",
     price: "4 500",
     unit: "kr / 4 timer",
-    desc: "Mest brukt. 4 timer i studio med beat og miks (ikke master).",
-    features: ["4 timer studio", "Beat inkludert", "Miks inkludert", "WAV / MP3 / stems"],
+    desc: "Mest brukt. 4 timer i studio med beat og mix (ikke master).",
+    features: ["4 timer studio", "Beat inkludert", "Mix inkludert", "WAV / MP3 / stems"],
     featured: true,
+  },
+  {
+    name: "Studio Pakke B",
+    price: null,
+    unit: "ta kontakt",
+    desc: "2 timer innspilling med beat og lett mix inkludert.",
+    features: ["2 timer studio", "Beat inkludert", "Lett mix", "Rå filer + WAV"],
+    featured: false,
   },
   {
     name: "Pakke Exclusive",
     price: "10 000",
     unit: "kr / heldag",
-    desc: "Full produksjon: beat, miks, master og 8t innspilling — pluss Spotify-veiledning.",
-    features: ["8 timer studio", "Beat + miks + master", "Veiledning til release", "Full Spotify-pakke"],
+    desc: "Full produksjon: beat, mix, master og 8t innspilling — pluss Spotify-veiledning.",
+    features: ["8 timer studio", "Beat + mix + master", "Veiledning til release", "Full Spotify-pakke"],
     featured: false,
   },
 ];
 
 const ADDONS = [
   { title: "Custom beat", body: "2 500,- — 2 revisjoner inkludert. Leveres som WAV, MP3 og stems." },
-  { title: "Mix & master", body: "2 500 – 7 500,- på bestilling. Pris avhenger av antall spor i låten." },
+  { title: "Mix & master", body: "2 500 – 7 500,- på bestilling. Pris avhenger av antall spor i låten. Er du signert? Ta kontakt." },
   { title: "Russelåter", body: "Egen kategori — ta kontakt for tilbud og tilgjengelighet." },
 ];
 
@@ -434,7 +434,7 @@ function Pricing() {
             <span className="text-gradient">ingen overraskelser.</span>
           </h2>
           <p className="mt-4 text-sm" style={{ color: "oklch(0.65 0.04 265)" }}>
-            Prisene gjelder unsigned artister. Signed? Ta kontakt for egen avtale.
+            Prisene gjelder unsigned artister. Er du signert? Ta kontakt for egen avtale.
           </p>
         </motion.div>
 
