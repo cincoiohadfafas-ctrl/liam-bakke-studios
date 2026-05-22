@@ -17,6 +17,10 @@ import { SiteHeader } from "@/components/SiteHeader";
 import { EMAIL, INSTAGRAM_URL, PHONE, SPOTIFY_URL } from "@/lib/utils";
 import studio from "@/assets/studio2.webp";
 import { LeafDecor } from "@/components/LeafDecor";
+import artistSander from "@/assets/artist-sander-systad.avif";
+import artistLavran from "@/assets/artist-lavran.jpg";
+import artistEmil from "@/assets/artist-emil-trellevik.jpg";
+import artistMatto from "@/assets/artist-matto-majestet.webp";
 
 /* ─── Head / SEO ─────────────────────────────────────────────────── */
 export function IndexPage() {
@@ -401,14 +405,10 @@ function Discography() {
 
 /* ─── Artist Gallery ─────────────────────────────────────────────── */
 const ARTISTS: { name: string; img?: string }[] = [
-  { name: "Artist 1" },
-  { name: "Artist 2" },
-  { name: "Artist 3" },
-  { name: "Artist 4" },
-  { name: "Artist 5" },
-  { name: "Artist 6" },
-  { name: "Artist 7" },
-  { name: "Artist 8" },
+  { name: "Sander Systad",  img: artistSander },
+  { name: "Lavran",         img: artistLavran },
+  { name: "Emil Trellevik", img: artistEmil },
+  { name: "Matto Majestet", img: artistMatto },
 ];
 
 function ArtistCard({ name, img }: { name: string; img?: string }) {
