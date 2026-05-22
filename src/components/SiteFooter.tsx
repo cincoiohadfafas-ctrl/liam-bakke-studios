@@ -147,7 +147,7 @@ export function SiteFooter() {
               <img
                 src={logoMark}
                 alt="Liam Bakke Studios"
-                className="h-20 w-20"
+                className="h-12 w-auto"
                 style={{ filter: "invert(1)", mixBlendMode: "screen" }}
               />
             </Link>
