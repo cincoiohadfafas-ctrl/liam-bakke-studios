@@ -517,11 +517,11 @@ function Portfolio() {
   );
 }
 
-const SPOTIFY_IDS = [
-  "2kVgVg482yR0LaPbNv1RJn",
-  "7hMj275zk6mrukM9TCKIrW",
-  "0UjY6d49LcB9gefNGJjxXq",
-  "1ENgD2Ug9odXNKl5SfGA44",
+const SPOTIFY_TRACKS = [
+  { id: "0AsqmzAn7doox4WgW19JDU", type: "album" },
+  { id: "4GAQuNod8hIyGDOu9SpIOZ", type: "track" },
+  { id: "5mdOf9EAfQz5cuTcrKS8G4", type: "album" },
+  { id: "0eXfem0D38UfshRXuyMxvm", type: "track" },
 ];
 
 function SpotifyPortfolio() {
@@ -532,10 +532,10 @@ function SpotifyPortfolio() {
       viewport={{ once: true }}
       className="grid grid-cols-1 sm:grid-cols-2 gap-3"
     >
-      {SPOTIFY_IDS.map((id) => (
+      {SPOTIFY_TRACKS.map(({ id, type }) => (
         <iframe
           key={id}
-          src={`https://open.spotify.com/embed/album/${id}?utm_source=generator&theme=0`}
+          src={`https://open.spotify.com/embed/${type}/${id}?utm_source=generator&theme=0`}
           width="100%"
           height="180"
           allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
