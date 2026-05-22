@@ -13,7 +13,7 @@ const LINKS = [
 
   { label: "Vilkår", to: "/legal", hash: undefined },
   { label: "Booking", to: "/", hash: "booking" },
-  { label: "Beat Generator", to: "/beats", hash: undefined },
+
 ] as const;
 
 function AdminPortal({ onClose }: { onClose: () => void }) {

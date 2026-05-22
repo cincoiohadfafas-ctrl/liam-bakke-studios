@@ -6,7 +6,7 @@ import logoMark from "@/assets/logo-mark.png";
 
 const NAV = [
   { label: "Tjenester", to: "/", hash: "tjenester", pulse: false },
-  { label: "Beats", to: "/", hash: "portfolio", pulse: false },
+  { label: "Musikk", to: "/", hash: "portfolio", pulse: false },
   { label: "Priser", to: "/", hash: "priser", pulse: false },
   { label: "Anmeldelser", to: "/", hash: "anmeldelser", pulse: false },
   { label: "Vilkår", to: "/legal", hash: undefined, pulse: false },
