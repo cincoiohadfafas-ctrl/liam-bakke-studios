@@ -764,7 +764,7 @@ function Reviews() {
           </p>
           <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
             Hva folk sier{" "}
-            <span className="text-gradient">etter økta.</span>
+            <span className="text-gradient">etter session.</span>
           </h2>
           <p className="mt-4 text-sm" style={{ color: "oklch(0.65 0.04 265)" }}>
             Hentet fra Google. Ekte stemmer, ekte sesjoner.
