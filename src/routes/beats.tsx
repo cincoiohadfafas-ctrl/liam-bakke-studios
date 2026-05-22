@@ -264,11 +264,29 @@ export function BeatsPage() {
           <div className="flex pl-12 pr-2 pt-3 pb-1 border-b" style={{ borderColor: "oklch(0.22 0.05 280)" }}>
             {Array.from({ length: STEPS }).map((_, i) => (
               <div key={i} className="flex-1 text-center text-xs select-none"
-                style={{ color: currentStep === i ? "oklch(0.90 0.10 280)" : i % 4 === 0 ? "oklch(0.55 0.04 265)" : "oklch(0.30 0.04 265)" }}>
+                style={{ color: currentStep === i ? "oklch(0.90 0.10 280)" : i % 4 === 0 ? "oklch(0.55 0.04 265)" : "oklch(0.30 0.04 265)", fontWeight: currentStep === i ? 700 : 400 }}>
                 {i % 4 === 0 ? i / 4 + 1 : "·"}
               </div>
             ))}
           </div>
+
+          {/* Grid area with playhead */}
+          <div className="relative">
+            {/* Playhead bar */}
+            {currentStep >= 0 && (
+              <div
+                className="absolute top-0 bottom-0 pointer-events-none"
+                style={{
+                  left: `calc(40px + 8px + ${currentStep} * ((100% - 40px - 16px) / ${STEPS}))`,
+                  width: `calc((100% - 40px - 16px) / ${STEPS} - 2px)`,
+                  background: "oklch(0.75 0.18 280 / 0.18)",
+                  borderLeft: "2px solid oklch(0.80 0.20 280 / 0.8)",
+                  boxShadow: "0 0 8px oklch(0.70 0.20 280 / 0.5)",
+                  zIndex: 10,
+                  transition: "left 0.04s linear",
+                }}
+              />
+            )}
 
           {/* Melody grid */}
           <div className="px-2 pt-2 pb-1">
@@ -284,16 +302,14 @@ export function BeatsPage() {
                   <div className="flex flex-1 gap-0.5">
                     {Array.from({ length: STEPS }).map((_, step) => {
                       const active = melodyGrid[step][rowIdx];
-                      const isCurrent = currentStep === step;
                       return (
                         <button key={step}
                           onClick={() => toggleMelodyCell(step, rowIdx)}
-                          className="flex-1 rounded-sm transition-all hover:opacity-80"
+                          className="flex-1 rounded-sm transition-colors hover:opacity-80"
                           style={{
                             height: "15px",
                             background: active
-                              ? isCurrent ? "oklch(0.90 0.15 280)" : "linear-gradient(135deg, oklch(0.62 0.18 280), oklch(0.52 0.16 168))"
-                              : isCurrent ? "oklch(0.28 0.06 280)"
+                              ? "linear-gradient(135deg, oklch(0.62 0.18 280), oklch(0.52 0.16 168))"
                               : isBlack ? "oklch(0.17 0.04 280)" : "oklch(0.22 0.05 280)",
                             border: active ? "none" : "1px solid oklch(0.25 0.05 280 / 0.5)",
                           }}
@@ -315,16 +331,13 @@ export function BeatsPage() {
                 <div className="flex flex-1 gap-0.5">
                   {Array.from({ length: STEPS }).map((_, step) => {
                     const active = drums[drum][step];
-                    const isCurrent = currentStep === step;
                     return (
                       <button key={step}
                         onClick={() => toggleDrumCell(drum, step)}
-                        className="flex-1 rounded-sm transition-all hover:opacity-80"
+                        className="flex-1 rounded-sm transition-colors hover:opacity-80"
                         style={{
                           height: "13px",
-                          background: active
-                            ? isCurrent ? "white" : drumColors[drum]
-                            : isCurrent ? "oklch(0.28 0.06 280)" : "oklch(0.20 0.05 280)",
+                          background: active ? drumColors[drum] : "oklch(0.20 0.05 280)",
                           border: active ? "none" : "1px solid oklch(0.25 0.05 280 / 0.5)",
                           opacity: active ? 1 : 0.5,
                         }}
@@ -335,6 +348,7 @@ export function BeatsPage() {
               </div>
             ))}
           </div>
+          </div>{/* end relative wrapper */}
         </div>
 
         {/* Action buttons */}
