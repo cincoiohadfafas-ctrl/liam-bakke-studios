@@ -137,7 +137,7 @@ export function SiteFooter() {
     </AnimatePresence>
     <footer
       className="relative border-t"
-      style={{ borderColor: "oklch(0.32 0.06 280 / 0.4)", background: "oklch(0.13 0.04 280)" }}
+      style={{ borderColor: "oklch(0.32 0.06 280 / 0.4)", background: "oklch(0.13 0.04 280)", zIndex: 1 }}
     >
       <div className="max-w-7xl mx-auto px-5 py-14">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
