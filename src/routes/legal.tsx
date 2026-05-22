@@ -8,9 +8,9 @@ const SECTIONS = [
     title: "Booking & Betaling",
     body: [
       "Alle bookinger bekreftes via e-post etter at depositum er mottatt.",
-      "Betaling kan gjøres via Vipps, bankoverføring eller kontant ved oppmøte.",
-      "Fullstendig betaling forfaller senest på dagen for innspillingssession.",
-      "Ved manglende betaling forbeholder Liam Bakke Studio seg retten til å kansellere bookingen.",
+      "Betaling gjøres utelukkende via bankoverføring. Andre betalingsmetoder aksepteres ikke.",
+      "Faktura sendes ved bekreftelse av booking og har 14 dagers betalingsfrist.",
+      "Ved manglende betaling innen forfall forbeholder Liam Bakke Studio seg retten til å kansellere bookingen.",
     ],
   },
   {
