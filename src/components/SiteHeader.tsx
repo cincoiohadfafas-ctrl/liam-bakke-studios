@@ -74,7 +74,7 @@ export function SiteHeader() {
               style={{ color: "oklch(0.97 0.01 240)" }}
             >
               Liam Bakke{" "}
-              <span style={{ color: "oklch(0.68 0.16 168)" }}>Studios</span>
+              <span style={{ color: "oklch(0.68 0.16 168)" }}>Studio</span>
             </span>
           </Link>
 
