@@ -16,9 +16,8 @@ const SECTIONS = [
   {
     title: "Kanselleringspolicy",
     body: [
-      "Kansellering mer enn 7 dager før booket dato: Depositum refunderes i sin helhet.",
-      "Kansellering 3–7 dager før booket dato: 50 % av depositumet refunderes.",
-      "Kansellering mindre enn 72 timer før booket dato: Depositumet refunderes ikke.",
+      "Kansellering mer enn 48 timer før booket dato: Depositum refunderes i sin helhet.",
+      "Kansellering mindre enn 48 timer før booket dato: Depositumet refunderes ikke.",
       "Liam Bakke Studio forbeholder seg retten til å avlyse en session ved force majeure, sykdom eller tekniske problemer. I slike tilfeller tilbys full refusjon eller ny dato uten ekstra kostnad.",
     ],
   },
@@ -53,7 +52,7 @@ const SECTIONS = [
   {
     title: "Immaterielle rettigheter",
     body: [
-      "Liam Bakke Studio beholder ingenting av opphavsretten til innspilt materiale. All rett tilfaller artisten.",
+      "Liam Bakke Studio beholder ingenting av opphavsretten til innspilt materiale ved usignert artist.",
       "Liam Bakke Studio kan med artistens samtykke bruke utdrag fra innspillinger i markedsføring.",
       "Artisten er ansvarlig for at innspilt innhold ikke krenker tredjeparts opphavsrettigheter.",
     ],
