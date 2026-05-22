@@ -68,8 +68,8 @@ export function OmPage() {
               className="mt-12 grid sm:grid-cols-3 gap-4"
             >
               {[
-                { icon: Calendar, label: "Etablert", value: "2019" },
-                { icon: MapPin, label: "Holder til", value: "Norge" },
+                { icon: Calendar, label: "Etablert", value: "2021" },
+                { icon: MapPin, label: "Holder til", value: "Bergen, Norge" },
                 { icon: Music2, label: "Spesialitet", value: "Beats & innspilling" },
               ].map(({ icon: Icon, label, value }) => (
                 <div
