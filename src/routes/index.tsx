@@ -123,8 +123,7 @@ function Hero() {
             className="font-display font-bold leading-[0.92] mb-7"
             style={{ fontSize: "clamp(3.5rem, 9vw, 7.5rem)", color: "oklch(0.97 0.01 240)" }}
           >
-            Lyden som <br />
-            <span className="text-gradient">flytter folk.</span>
+            <span className="text-gradient">Velkommen.</span>
           </h1>
 
           <p
