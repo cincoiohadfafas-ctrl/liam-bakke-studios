@@ -918,8 +918,8 @@ function Booking() {
             Booking
           </p>
           <h2 className="font-display text-4xl md:text-6xl font-bold mb-4" style={{ color: "oklch(0.97 0.01 240)" }}>
-            La oss lage{" "}
-            <span className="text-gradient">noe sykt.</span>
+            Klar for{" "}
+            <span className="text-gradient">studio?</span>
           </h2>
           <p className="text-sm max-w-md mx-auto" style={{ color: "oklch(0.65 0.04 265)" }}>
             Fortell hva du jobber med, så svarer Liam innen 24 timer.
