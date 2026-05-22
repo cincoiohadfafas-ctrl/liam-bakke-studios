@@ -173,7 +173,7 @@ function Hero() {
             style={{ color: "oklch(0.65 0.04 265)" }}
           >
             {[
-              { val: "30+", lbl: "Artists worked with" },
+              { val: "30+", lbl: "Artister jobbet med" },
               { val: "NRK", lbl: "& MGPjr featured" },
               { val: "1:1", lbl: "Personlig oppfølging" },
             ].map(({ val, lbl }, i) => (
