@@ -174,7 +174,7 @@ function Hero() {
           >
             {[
               { val: "30+", lbl: "Artister jobbet med" },
-              { val: "NRK", lbl: "& MGPjr featured" },
+              { val: "NRK", lbl: "& MGPjr vist på" },
               { val: "1:1", lbl: "Personlig oppfølging" },
             ].map(({ val, lbl }, i) => (
               <div key={lbl} className="flex items-center gap-6">
