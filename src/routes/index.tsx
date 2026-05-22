@@ -135,6 +135,12 @@ function Hero() {
             som tar musikken sin på alvor. Varme rom, presist utstyr, og et øre som vet
             hva låten din trenger.
           </p>
+          <p
+            className="text-lg leading-relaxed max-w-xl mb-10"
+            style={{ color: "oklch(0.70 0.04 265)" }}
+          >
+            Ditt studio. Din visjon. Din lyd. Fra idé til ferdig track — med en produsent som bryr seg om musikken din.
+          </p>
 
           <div className="flex flex-wrap gap-3 mb-16">
             <Link
