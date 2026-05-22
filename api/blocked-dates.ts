@@ -1,5 +1,5 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { put, list } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Cache-Control", "no-store");
@@ -23,11 +23,12 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(401).json({ error: "Feil passord" });
     }
     if (dates !== undefined) {
+      const { blobs } = await list({ prefix: "blocked-dates" });
+      if (blobs.length > 0) await del(blobs.map(b => b.url));
       await put("blocked-dates.json", JSON.stringify({ dates }), {
         access: "public",
         contentType: "application/json",
         addRandomSuffix: false,
-        allowOverwrite: true,
       });
     }
     return res.json({ ok: true });
