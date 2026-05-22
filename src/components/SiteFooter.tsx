@@ -150,15 +150,12 @@ export function SiteFooter() {
                 className="h-14"
                 style={{
                   filter: "invert(1)",
+                  mixBlendMode: "screen",
                   maskImage: "linear-gradient(to right, black 60%, transparent 100%)",
                   WebkitMaskImage: "linear-gradient(to right, black 60%, transparent 100%)",
                 }}
               />
             </Link>
-            <p className="text-sm leading-relaxed" style={{ color: "oklch(0.60 0.04 265)" }}>
-              Profesjonelt innspillingsstudio for artister som tar musikken sin på alvor.
-              Varme rom, presist utstyr, ekte resultater.
-            </p>
           </div>
 
           {/* Nav */}

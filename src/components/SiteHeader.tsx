@@ -66,7 +66,7 @@ export function SiteHeader() {
         <div className="max-w-7xl mx-auto px-5 h-16 flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center gap-2.5 shrink-0" onClick={() => setOpen(false)}>
-            <img src={logoMark} alt="LBS" className="h-7 w-7" style={{ filter: "invert(1)" }} />
+            <img src={logoMark} alt="LBS" className="h-7 w-7" style={{ filter: "invert(1)", mixBlendMode: "screen" }} />
             <span
               className="font-display font-bold text-sm tracking-wide uppercase hidden sm:block"
               style={{ color: "oklch(0.97 0.01 240)" }}
