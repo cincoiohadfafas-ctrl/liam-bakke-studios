@@ -1,7 +1,7 @@
 import { Link, useNavigate } from "@tanstack/react-router";
 import { Instagram, Music2, Mail, Phone } from "lucide-react";
 import { EMAIL, PHONE, INSTAGRAM_URL, SPOTIFY_URL } from "@/lib/utils";
-import logoFull from "@/assets/logo-full.png";
+import logoMark from "@/assets/logo-mark.png";
 import { useState, useEffect, useRef } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { DinoGame } from "./DinoGame";
@@ -145,15 +145,10 @@ export function SiteFooter() {
           <div>
             <Link to="/" className="inline-block mb-4" onClick={handleLogoClick}>
               <img
-                src={logoFull}
+                src={logoMark}
                 alt="Liam Bakke Studios"
-                className="h-14"
-                style={{
-                  filter: "invert(1)",
-                  mixBlendMode: "screen",
-                  maskImage: "linear-gradient(to right, black 60%, transparent 100%)",
-                  WebkitMaskImage: "linear-gradient(to right, black 60%, transparent 100%)",
-                }}
+                className="h-16 w-16"
+                style={{ filter: "invert(1)", mixBlendMode: "screen" }}
               />
             </Link>
           </div>
