@@ -405,10 +405,10 @@ function Discography() {
 
 /* ─── Artist Gallery ─────────────────────────────────────────────── */
 const ARTISTS: { name: string; img?: string }[] = [
+  { name: "Matto Majestet", img: artistMatto },
+  { name: "Emil Trellevik", img: artistEmil },
   { name: "Sander Systad",  img: artistSander },
   { name: "Lavran",         img: artistLavran },
-  { name: "Emil Trellevik", img: artistEmil },
-  { name: "Matto Majestet", img: artistMatto },
 ];
 
 function ArtistCard({ name, img }: { name: string; img?: string }) {
