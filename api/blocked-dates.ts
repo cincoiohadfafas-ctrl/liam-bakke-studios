@@ -1,5 +1,8 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { put, list, del } from "@vercel/blob";
+
+const BIN_ID = "6a101b256877513b27b38dad";
+const API_KEY = process.env.JSONBIN_API_KEY!;
+const BIN_URL = `https://api.jsonbin.io/v3/b/${BIN_ID}`;
 
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Cache-Control", "no-store");
@@ -7,11 +10,11 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === "GET") {
     try {
-      const { blobs } = await list({ prefix: "blocked-dates" });
-      if (blobs.length === 0) return res.json({ dates: [] });
-      const r = await fetch(blobs[0].url + `?t=${Date.now()}`);
+      const r = await fetch(`${BIN_URL}/latest`, {
+        headers: { "X-Master-Key": API_KEY },
+      });
       const data = await r.json();
-      return res.json(data);
+      return res.json(data.record ?? { dates: [] });
     } catch {
       return res.json({ dates: [] });
     }
@@ -19,20 +22,18 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
   if (req.method === "POST") {
     const { password, dates } = req.body as { password: string; dates?: string[] };
-    console.log("pw_len:", password.length, "env_len:", process.env.ADMIN_PASSWORD?.length);
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Feil passord" });
     }
     if (dates !== undefined) {
-      const { blobs } = await list({ prefix: "blocked-dates" });
-      if (blobs.length > 0) await del(blobs.map(b => b.url));
-      await put("blocked-dates.json", JSON.stringify({ dates }), {
-        access: "public",
-        contentType: "application/json",
-        addRandomSuffix: false,
-        allowOverwrite: true,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      } as any);
+      await fetch(BIN_URL, {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Master-Key": API_KEY,
+        },
+        body: JSON.stringify({ dates }),
+      });
     }
     return res.json({ ok: true });
   }
