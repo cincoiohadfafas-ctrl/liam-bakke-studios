@@ -10,7 +10,7 @@ const SECTIONS = [
       "Alle bookinger bekreftes via e-post etter at depositum er mottatt.",
       "Betaling gjøres utelukkende via bankoverføring. Andre betalingsmetoder aksepteres ikke.",
       "Faktura sendes ved bekreftelse av booking og har 14 dagers betalingsfrist.",
-      "Ved manglende betaling innen forfall forbeholder Liam Bakke Studio seg retten til å kansellere bookingen.",
+      "Ved manglende depositum innen forfall forbeholder Liam Bakke Studio seg retten til å kansellere bookingen.",
     ],
   },
   {
