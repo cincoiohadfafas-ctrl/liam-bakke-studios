@@ -11,7 +11,7 @@ const NAV = [
   { label: "Anmeldelser", to: "/", hash: "anmeldelser", pulse: false },
   { label: "Akustikk", to: "/akustikk", hash: undefined, pulse: false },
   { label: "As featured", to: "/featured", hash: undefined, pulse: true },
-  { label: "Om Liam", to: "/om", hash: undefined, pulse: false },
+  { label: "Om Liam Bakke", to: "/om", hash: undefined, pulse: false },
 ] as const;
 
 const MOBILE_NAV = [
@@ -21,7 +21,7 @@ const MOBILE_NAV = [
   { label: "Anmeldelser", to: "/", hash: "anmeldelser" },
   { label: "Akustikk", to: "/akustikk", hash: undefined },
   { label: "As featured", to: "/featured", hash: undefined },
-  { label: "Om Liam", to: "/om", hash: undefined },
+  { label: "Om Liam Bakke", to: "/om", hash: undefined },
   { label: "Kontakt", to: "/", hash: "kontakt" },
 ] as const;
 
