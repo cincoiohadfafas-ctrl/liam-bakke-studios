@@ -9,15 +9,13 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   if (req.method === "GET") {
-    try {
-      const r = await fetch(`${BIN_URL}/latest`, {
-        headers: { "X-Master-Key": API_KEY },
-      });
-      const data = await r.json();
-      return res.json(data.record ?? { dates: [] });
-    } catch {
-      return res.json({ dates: [] });
-    }
+    const r = await fetch(`${BIN_URL}/latest`, {
+      headers: { "X-Master-Key": process.env.JSONBIN_API_KEY ?? "" },
+    });
+    console.log("jsonbin status:", r.status, "key_set:", !!process.env.JSONBIN_API_KEY);
+    const data = await r.json();
+    console.log("jsonbin data:", JSON.stringify(data).slice(0, 200));
+    return res.json(data.record ?? { dates: [] });
   }
 
   if (req.method === "POST") {
