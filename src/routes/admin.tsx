@@ -106,7 +106,7 @@ export function AdminPage() {
       >
         <LeafDecor />
         <div
-          className="w-full max-w-sm rounded-2xl border p-8"
+          className="relative z-10 w-full max-w-sm rounded-2xl border p-8"
           style={{
             background: "oklch(0.18 0.05 280 / 0.8)",
             borderColor: "oklch(0.32 0.06 280 / 0.5)",
@@ -161,7 +161,7 @@ export function AdminPage() {
       style={{ background: "oklch(0.13 0.04 280)" }}
     >
       <LeafDecor />
-      <div className="max-w-lg mx-auto">
+      <div className="relative z-10 max-w-lg mx-auto">
         <div className="flex items-center justify-between mb-10">
           <img src={logoFull} alt="Liam Bakke Studios" className="h-7 opacity-80 cursor-pointer relative z-10"
             style={{ filter: "invert(1)" }} onClick={() => navigate({ to: "/" })} />
