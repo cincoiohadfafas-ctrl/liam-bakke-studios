@@ -9,18 +9,19 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   res.setHeader("Access-Control-Allow-Origin", "*");
 
   if (req.method === "GET") {
-    const r = await fetch(`${BIN_URL}/latest`, {
-      headers: { "X-Master-Key": process.env.JSONBIN_API_KEY ?? "" },
-    });
-    console.log("jsonbin status:", r.status, "key_set:", !!process.env.JSONBIN_API_KEY);
-    const data = await r.json();
-    console.log("jsonbin data:", JSON.stringify(data).slice(0, 200));
-    return res.json(data.record ?? { dates: [] });
+    try {
+      const r = await fetch(`${BIN_URL}/latest`, {
+        headers: { "X-Master-Key": process.env.JSONBIN_API_KEY ?? "" },
+      });
+      const data = await r.json();
+      return res.json(data.record ?? { dates: [] });
+    } catch {
+      return res.json({ dates: [] });
+    }
   }
 
   if (req.method === "POST") {
     const { password, dates } = req.body as { password: string; dates?: string[] };
-    console.log("login attempt pw_len:", password?.length, "env_len:", process.env.ADMIN_PASSWORD?.length, "match:", password === process.env.ADMIN_PASSWORD);
     if (!process.env.ADMIN_PASSWORD || password !== process.env.ADMIN_PASSWORD) {
       return res.status(401).json({ error: "Feil passord" });
     }
