@@ -320,11 +320,11 @@ function Portfolio() {
             viewport={{ once: true }}
           >
             <p className="text-xs uppercase tracking-widest font-semibold mb-3" style={{ color: "oklch(0.68 0.16 168)" }}>
-              Beats
+              Musikk
             </p>
             <h2 className="font-display text-4xl md:text-6xl font-bold" style={{ color: "oklch(0.97 0.01 240)" }}>
-              Latest{" "}
-              <span className="text-gradient">Beats.</span>
+              Nyeste{" "}
+              <span className="text-gradient">Utgivelser.</span>
             </h2>
           </motion.div>
           <a
